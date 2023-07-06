@@ -57,7 +57,7 @@ const ProductDetails = ({}) => {
 
               <p id="product_price">${product.price}</p>
               <div className="stockCounter d-inline">
-                <span className="btn btn-danger minus">-</span>
+                <span className="btn2 btn-dark minus">-</span>
 
                 <input
                   type="number"
@@ -66,20 +66,20 @@ const ProductDetails = ({}) => {
                   readOnly
                 />
 
-                <span className="btn btn-primary plus">+</span>
+                <span className="btn2 btn-dark plus">+</span>
               </div>
               <button
                 type="button"
                 id="cart_btn"
                 className="btn btn-primary d-inline ml-4"
               >
-                Add to Cart
+                Añadir al carrito
               </button>
 
               <hr />
 
               <p>
-                Status: <span id="stock_status" className={product.stock > 0 ? "greenColor" : "redColor"}>{product.stock > 0 ? "In Stock" : "Out of Stock"}</span>              </p>
+                Status: <span id="stock_status" className={product.stock > 0 ? "greenColor" : "redColor"}>{product.stock > 0 ? "En Stock" : "Fuera de Stock"}</span>              </p>
 
               <hr />
 
@@ -95,7 +95,7 @@ const ProductDetails = ({}) => {
                 data-toggle="modal"
                 data-target="#ratingModal"
               >
-                Submit Your Review
+                Ingresa tu reseña
               </button>
 
               <div className="row mt-2 mb-5">

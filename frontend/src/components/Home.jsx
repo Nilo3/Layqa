@@ -29,7 +29,7 @@ const Home = () => {
         <Fragment>
           <MetaData title={"Envuelve tu hogar en fragancia"} />
 
-          <h1 id="products-heading">Latest Products</h1>
+          <h1 id="products-heading">Nuestros Productos</h1>
 
           <section id="products" class="container mt-5">
             <div className="row">

@@ -43,7 +43,8 @@ const productSchema = new mongoose.Schema({
                 "Perfuminas",
                 "Mantecas",
                 "Difusores",
-                "General"
+                "Jabones",
+                "Aromas"
             ],
             message: "Please select correct category for this product "
         }
