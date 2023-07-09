@@ -9,25 +9,29 @@ import {
     PRODUCT_DETAILS_FAIL
 } from "../constants/productConstants"
 
-export const getProducts = () => async(dispatch) => {
+export const getProducts = (keyword ="", currentPage = 1) => async (dispatch) => {
     try {
-        
-        dispatch( { type: ALL_PRODUCTS_REQUEST } )
-
-        const { data } = await axios.get("/api/v1/products")
-
-        dispatch({
-            type: ALL_PRODUCTS_SUCCESS,
-            payload: data
-        })
-
+      // Si keyword es null, asignar un valor por defecto de ""
+      
+      
+      dispatch({ type: ALL_PRODUCTS_REQUEST });
+  
+      const { data } = await axios.get(
+        `/api/v1/products?keyword=${keyword}&page=${currentPage}`
+      );
+      
+      dispatch({
+        type: ALL_PRODUCTS_SUCCESS,
+        payload: data,
+      });
     } catch (error) {
-        dispatch({
-            type: ALL_PRODUCTS_FAIL,
-            payload: error.response.data.message
-        })
+      dispatch({
+        type: ALL_PRODUCTS_FAIL,
+        payload: error.response.data.message,
+      });
     }
-}
+  };
+  
 
 export const getProductsDetails = (id) => async(dispatch) => {
     try {

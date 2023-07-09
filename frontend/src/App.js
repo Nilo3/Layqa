@@ -12,8 +12,9 @@ function App() {
       <Header />
       <div className='container container-fluid'>
       <Routes>
-      <Route path="/" Component={Home} exact />
-      <Route path="/products/:id" Component={ProductDetails} exact />
+        <Route path="/" element={<Home />} />
+        <Route path="/search/:keyword" element={<Home />} />
+        <Route path="/products/:id" element={<ProductDetails />} exact />
       </Routes>
       </div>
       <Footer />

@@ -1,8 +1,19 @@
 import React, { Fragment } from "react";
-import "../../App.css"
-
+import "../../App.css";
+import Search from "./Search";
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const searchHandler = (keyword) => {
+    if (keyword.trim()) {
+      navigate(`/search/${keyword}`);
+    } else {
+      navigate("/");
+    }
+  };
+
   return (
     <Fragment>
       <nav className="navbar row">
@@ -13,19 +24,12 @@ const Header = () => {
         </div>
 
         <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <div className="input-group">
-            <input
-              type="text"
-              id="search_field"
-              className="form-control"
-              placeholder="Ingresa el nombre del producto ..."
+          <Routes>
+            <Route
+              path="/"
+              element={<Search searchHandler={searchHandler} />}
             />
-            <div className="input-group-append">
-              <button id="search_btn" class="btn">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </div>
-          </div>
+          </Routes>
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">

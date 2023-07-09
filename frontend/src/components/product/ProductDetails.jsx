@@ -7,7 +7,7 @@ import MetaData from "../layout/MetaData";
 import { useParams } from 'react-router-dom';
 import { Carousel } from "react-bootstrap"
 
-const ProductDetails = ({}) => {
+const ProductDetails = () => {
   const dispatch = useDispatch();
 
   const alert = useAlert();
@@ -25,17 +25,20 @@ const ProductDetails = ({}) => {
     }
   }, [dispatch, alert, error, id]);
 
+
+
   return (
     <Fragment>
       {loading ? (
         <Loader />
       ) : (
         <Fragment>
-          <div className="row f-flex justify-content-around">
+          <MetaData title={product.name}  />
+          <div  className="row f-flex justify-content-around">
             <div className="col-12 col-lg-5 img-fluid" id="product_image">
               <Carousel pause="hover">
                 {product.images && product.images.map(image => (
-                    <Carousel.Item key={image.public}>
+                    <Carousel.Item key={image.public_id}>
                         <img className="d-block w-100" src={image.url} alt={product.title} />
                     </Carousel.Item>
                 ))}
@@ -49,7 +52,7 @@ const ProductDetails = ({}) => {
               <hr />
 
               <div className="rating-outer">
-                <div className="rating-inner style={{ width: `${(product.ratings / 5) * 100}%`"></div>
+              <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
               </div>
               <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
 

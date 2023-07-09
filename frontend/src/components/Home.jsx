@@ -1,37 +1,47 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/productActions";
 import Product from "./product/Product";
 import Loader from "./layout/Loader";
-import { useAlert } from "react-alert"
+import { useAlert } from "react-alert";
+import Pagination from "react-js-pagination";
+import { useParams } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ match }) => {
+  const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const alert = useAlert();
-
-  const { loading, products, error, productsCount } = useSelector(
+  const { loading, products, error, productCount, resPerPage } = useSelector(
     (state) => state.products
   );
 
+  const { keyword } = useParams();
+
   useEffect(() => {
-    if(error){
-      return alert.error(error)
+    if (error) {
+      return alert.error(error);
     }
-    dispatch(getProducts());
-  }, [dispatch, alert, error]);
+    dispatch(getProducts(keyword, currentPage));
+  }, [dispatch, alert, error, keyword, currentPage]);
+
+  function setCurrentPageNo(pageNumber) {
+    setCurrentPage(pageNumber);
+  }
 
   return (
     <Fragment>
       {loading ? (
-        <h1><Loader /></h1>
+        <h1>
+          <Loader />
+        </h1>
       ) : (
         <Fragment>
           <MetaData title={"Envuelve tu hogar en fragancia"} />
 
           <h1 id="products-heading">Nuestros Productos</h1>
 
-          <section id="products" class="container mt-5">
+          <section id="products" className="container mt-5">
             <div className="row">
               {products &&
                 products.map((product) => (
@@ -39,6 +49,27 @@ const Home = () => {
                 ))}
             </div>
           </section>
+
+          {resPerPage <= productCount && (
+            <div className="d-flex justify-content-center mt-5">
+              {productCount !== undefined ? (
+                <Pagination
+                  activePage={currentPage}
+                  itemsCountPerPage={resPerPage}
+                  totalItemsCount={productCount}
+                  onChange={setCurrentPageNo}
+                  nextPageText={"Next"}
+                  prevPageText={"Prev"}
+                  firstPageText={"First"}
+                  lastPageText={"Last"}
+                  itemClass="page-item"
+                  linkClass="page-link"
+                />
+              ) : (
+                <Loader />
+              )}
+            </div>
+          )}
         </Fragment>
       )}
     </Fragment>
