@@ -7,8 +7,9 @@ import Loader from "./layout/Loader";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { useParams } from "react-router-dom";
+import Search from "../components/layout/Search";
 
-const Home = ({ match }) => {
+const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -31,16 +32,19 @@ const Home = ({ match }) => {
 
   return (
     <Fragment>
+      <Search />
+      <MetaData title={"Envuelve tu hogar en fragancia"} />
+
+      
+
+      <br />
+      <br />
+      <h1 id="products-heading">Nuestros Productos</h1>
+
       {loading ? (
-        <h1>
-          <Loader />
-        </h1>
+        <Loader />
       ) : (
         <Fragment>
-          <MetaData title={"Envuelve tu hogar en fragancia"} />
-
-          <h1 id="products-heading">Nuestros Productos</h1>
-
           <section id="products" className="container mt-5">
             <div className="row">
               {products &&

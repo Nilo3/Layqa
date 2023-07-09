@@ -14,6 +14,8 @@ const Header = () => {
     }
   };
 
+
+
   return (
     <Fragment>
       <nav className="navbar row">
@@ -24,12 +26,7 @@ const Header = () => {
         </div>
 
         <div className="col-12 col-md-6 mt-2 mt-md-0">
-          <Routes>
-            <Route
-              path="/"
-              element={<Search searchHandler={searchHandler} />}
-            />
-          </Routes>
+          
         </div>
 
         <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
