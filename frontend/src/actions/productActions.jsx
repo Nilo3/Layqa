@@ -9,16 +9,20 @@ import {
     PRODUCT_DETAILS_FAIL
 } from "../constants/productConstants"
 
-export const getProducts = (keyword ="", currentPage = 1) => async (dispatch) => {
+export const getProducts = (keyword ="", currentPage = 1, category) => async (dispatch) => {
     try {
       // Si keyword es null, asignar un valor por defecto de ""
       
       
       dispatch({ type: ALL_PRODUCTS_REQUEST });
+
+      let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}`
+
+      if(category){
+        link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&category=${category}`
+      }
   
-      const { data } = await axios.get(
-        `/api/v1/products?keyword=${keyword}&page=${currentPage}`
-      );
+      const { data } = await axios.get(link);
       
       dispatch({
         type: ALL_PRODUCTS_SUCCESS,

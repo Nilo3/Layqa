@@ -11,20 +11,36 @@ import Search from "../components/layout/Search";
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [prevKeyword, setPrevKeyword] = useState("");
+  const [category, setCategory] = useState("")
+  const categories = [
+    "Velas",
+    "Mantecas",
+    "Difusores",
+    "Jabones",
+    "Aromas"
+  ]
   const dispatch = useDispatch();
   const alert = useAlert();
   const { loading, products, error, productCount, resPerPage } = useSelector(
     (state) => state.products
   );
-
+ 
   const { keyword } = useParams();
 
   useEffect(() => {
     if (error) {
       return alert.error(error);
     }
-    dispatch(getProducts(keyword, currentPage));
-  }, [dispatch, alert, error, keyword, currentPage]);
+    dispatch(getProducts(keyword, currentPage,category));
+    setPrevKeyword(keyword); // Guardar el valor anterior de la keyword
+  }, [dispatch, alert, error, keyword, currentPage,category]);
+
+  useEffect(() => {
+    if (prevKeyword !== keyword) {
+      setCurrentPage(1); // Si la keyword cambia, establecer la página actual en 1
+    }
+  }, [keyword, prevKeyword]);
 
   function setCurrentPageNo(pageNumber) {
     setCurrentPage(pageNumber);
@@ -36,8 +52,6 @@ const Home = () => {
       <MetaData title={"Envuelve tu hogar en fragancia"} />
 
       
-
-      <br />
       <br />
       <h1 id="products-heading">Nuestros Productos</h1>
 
@@ -45,6 +59,25 @@ const Home = () => {
         <Loader />
       ) : (
         <Fragment>
+          <div className="mt-5">
+            <h4 className="mb-3">
+              Categorias
+            </h4>
+            <ul className="pl-0">
+                {categories.map(category => (
+                  <li
+                    style={{cursor: "pointer",
+                            listStyleType: "none"
+                          }}
+                          key={category}        
+                          onClick={()=>setCategory(category)}
+                  >
+                    {category}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          
           <section id="products" className="container mt-5">
             <div className="row">
               {products &&
@@ -54,9 +87,9 @@ const Home = () => {
             </div>
           </section>
 
-          {resPerPage <= productCount && (
+          {resPerPage <= productCount  &&  (
             <div className="d-flex justify-content-center mt-5">
-              {productCount !== undefined ? (
+              {productCount !== undefined  ? (
                 <Pagination
                   activePage={currentPage}
                   itemsCountPerPage={resPerPage}
