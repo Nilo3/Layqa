@@ -12,9 +12,9 @@ import { useParams } from "react-router-dom";
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [prevKeyword, setPrevKeyword] = useState("");
-  const [category, setCategory] = useState("Todos");
+  const [category, setCategory] = useState("Todo");
   const [searchKeyword, setSearchKeyword] = useState("");
-  const categories = ["Todos", "Velas", "Mantecas", "Difusores", "Jabones", "Aromas"];
+  const categories = ["Todo", "Velas", "Mantecas", "Difusores", "Jabones", "Aromas"];
   const dispatch = useDispatch();
   const alert = useAlert();
   const { loading, products, error, productCount, resPerPage } = useSelector(
@@ -28,7 +28,7 @@ const Home = () => {
       return alert.error(error);
     }
 
-    const selectedCategory = category === "Todos" ? "" : category;
+    const selectedCategory = category === "Todo" ? "" : category;
 
     // Actualiza el valor de keyword en base al estado searchKeyword
     const updatedKeyword = searchKeyword || keyword;
