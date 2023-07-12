@@ -7,12 +7,13 @@ import Loader from "./layout/Loader";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
 import { useParams } from "react-router-dom";
-import Search from "../components/layout/Search";
+
 
 const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [prevKeyword, setPrevKeyword] = useState("");
   const [category, setCategory] = useState("Todos");
+  const [searchKeyword, setSearchKeyword] = useState("");
   const categories = ["Todos", "Velas", "Mantecas", "Difusores", "Jabones", "Aromas"];
   const dispatch = useDispatch();
   const alert = useAlert();
@@ -29,9 +30,12 @@ const Home = () => {
 
     const selectedCategory = category === "Todos" ? "" : category;
 
-    dispatch(getProducts(keyword, currentPage, selectedCategory));
-    setPrevKeyword(keyword);
-  }, [dispatch, alert, error, keyword, currentPage, category]);
+    // Actualiza el valor de keyword en base al estado searchKeyword
+    const updatedKeyword = searchKeyword || keyword;
+    
+    dispatch(getProducts(updatedKeyword, currentPage, selectedCategory));
+    setPrevKeyword(updatedKeyword);
+  }, [dispatch, alert, error, searchKeyword, currentPage, category, keyword]);
 
   useEffect(() => {
     if (prevKeyword !== keyword) {
@@ -43,16 +47,26 @@ const Home = () => {
     setCurrentPage(pageNumber);
   }
 
+  function handleCategoryChange(selectedCategory) {
+    setCategory(selectedCategory);
+    setCurrentPage(1);
+    setSearchKeyword("");
+  }
+
   return (
     <Fragment>
-      <Search />
+     <style>
+        {`
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+      `}
+      </style>
       <MetaData title={"Envuelve tu hogar en fragancia"} />
 
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-3">
             <div className="mt-5">
-              <h4 className="mb-3">Categorías</h4>
+              <h4 className="mb-3" style={{ fontFamily: 'Pacifico' }}>Categorías</h4>
               <ul className="pl-0">
                 {categories.map((category) => (
                   <li
@@ -61,7 +75,7 @@ const Home = () => {
                       listStyleType: "none",
                     }}
                     key={category}
-                    onClick={() => setCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                   >
                     {category}
                   </li>
@@ -70,8 +84,8 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-9">
-            <h1 id="products-heading">Nuestros Productos</h1>
-
+            <h1 id="products-heading" style={{ fontFamily: 'Pacifico' }}>Nuestros Productos</h1>
+                    <br />
             {loading ? (
               <Loader />
             ) : (
