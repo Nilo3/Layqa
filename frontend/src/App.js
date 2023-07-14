@@ -5,6 +5,9 @@ import Home from './components/Home';
 import { BrowserRouter as Router, Route, Routes} from "react-router-dom"
 import ProductDetails from './components/product/ProductDetails';
 import Login from './components/user/Login';
+import Register from './components/user/Register';
+
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
         <Route path="/search/:keyword" element={<Home />} />
         <Route path="/products/:id" element={<ProductDetails />} exact />
         <Route path='/login' element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
       </div>
       <Footer />

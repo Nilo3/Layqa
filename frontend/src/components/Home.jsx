@@ -64,7 +64,7 @@ const Home = () => {
 
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-3">
+          <div className="col-md-3 mt-5">
             <div className="mt-5">
               <h4 className="mb-3" style={{ fontFamily: 'Pacifico' }}>Categorías</h4>
               <ul className="pl-0">
@@ -84,7 +84,7 @@ const Home = () => {
             </div>
           </div>
           <div className="col-md-9">
-            <h1 id="products-heading" style={{ fontFamily: 'Pacifico' }}>Nuestros Productos</h1>
+            <h1 id="products-heading" style={{ fontFamily: 'Pacifico' }} className="centrado">Nuestros Productos</h1>
                     <br />
             {loading ? (
               <Loader />
@@ -102,6 +102,7 @@ const Home = () => {
                 {resPerPage <= productCount && (
                   <div className="d-flex justify-content-center mt-5">
                     {productCount !== undefined ? (
+                      
                       <Pagination
                         activePage={currentPage}
                         itemsCountPerPage={resPerPage}
