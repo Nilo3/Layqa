@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "../../App.css";
 import { useDispatch, useSelector} from "react-redux"
 import { useAlert } from "react-alert"
-import { NavLink, Link,   useNavigate } from "react-router-dom";
+import { Link,  useNavigate } from "react-router-dom";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -37,8 +37,8 @@ const Header = () => {
 
             <div className="ml-4 dropdown d-inline" >
               <Link to="#!" className="btn btn-secondary dropdown-toggle"
-              type="button" id="dropdownMenuButton" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
+              type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+              aria-expanded="false">
 
                 <figure className="avatar avatar-nav">
                   <img 
@@ -51,12 +51,20 @@ const Header = () => {
                 <span>{user && user.name}</span>
               </Link>
              
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+
+                {user && user.role !== "admin" ? (
+                  <Link className="dropdown-item" to="/orders/me">Pedidos</Link>
+                ) : (
+                  <Link className="dropdown-item" to="/dashboard">Admin</Link>
+                )}
+                <Link className="dropdown-item" to="/me">Mi Perfil</Link>
                 <Link className="dropdown-item text-danger" to="/">
                   Logout
                 </Link>
               </div>
             </div>
+            
 
           ): !loading  && <Link to="Login" className="btn ml-4" id="login_btn">Ingresar</Link> }
           
