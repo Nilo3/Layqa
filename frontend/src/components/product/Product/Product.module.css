@@ -5,6 +5,7 @@
     height: 300px; /* Ajusta la altura deseada */
     object-fit: cover; /* Ajusta la forma en que la imagen se adapta al contenedor */
     align-self: center;
+    border-radius: 2%;
   }
   
 
