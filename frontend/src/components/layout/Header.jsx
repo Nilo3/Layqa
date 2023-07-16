@@ -3,6 +3,7 @@ import "../../App.css";
 import { useDispatch, useSelector} from "react-redux"
 import { useAlert } from "react-alert"
 import { Link,  useNavigate } from "react-router-dom";
+import { logout } from "../../actions/userActions";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -12,7 +13,10 @@ const Header = () => {
 
   const { user, loading } = useSelector(state => state.auth)
 
-
+  const logoutHandler = () => {
+    dispatch(logout());
+    alert.success('Logged out successfully.')
+}
 
   return (
     <Fragment>
@@ -59,7 +63,7 @@ const Header = () => {
                   <Link className="dropdown-item" to="/dashboard">Admin</Link>
                 )}
                 <Link className="dropdown-item" to="/me">Mi Perfil</Link>
-                <Link className="dropdown-item text-danger" to="/">
+                <Link className="dropdown-item text-danger" to="/" onClick={logoutHandler}>
                   Logout
                 </Link>
               </div>
