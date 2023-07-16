@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import MetaData from "./layout/MetaData";
 import { useDispatch, useSelector } from "react-redux";
 import { getProducts } from "../actions/productActions";
-import Product from "./product/Product";
+import Product from "./product/Product/Product"
 import Loader from "./layout/Loader";
 import { useAlert } from "react-alert";
 import Pagination from "react-js-pagination";
