@@ -1,7 +1,5 @@
 import React, { Fragment, useState, useEffect } from "react";
-
 import MetaData from "../layout/MetaData";
-
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -40,18 +38,14 @@ const UpdateProfile = () => {
     }
 
     if (isUpdated) {
-        
       alert.success("Usuario actualizado correctamente");
-      dispatch(loadUser());
+   
 
-      navigate("/me");
-
-      dispatch({
-        type: UPDATE_PROFILE_RESET,
-      });
+      window.history.pushState(null, "", "/"); // Cambiar la URL sin navegación completa
+      window.location.reload()
+  
     }
-    
-  }, [dispatch, alert, error, navigate, isUpdated]);
+  }, [dispatch, alert, error, isUpdated]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -73,18 +67,20 @@ const UpdateProfile = () => {
         setAvatar(reader.result);
       }
     };
-    
+
     reader.readAsDataURL(e.target.files[0]);
   };
-
-
 
   return (
     <Fragment>
       <MetaData title={"Actualizar Perfil"} />
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
-          <form className="shadow-lg" onSubmit={submitHandler} encType="multipart/form-data">
+          <form
+            className="shadow-lg"
+            onSubmit={submitHandler}
+            encType="multipart/form-data"
+          >
             <h1 className="mt-2 mb-5">Update Profile</h1>
 
             <div className="form-group">
@@ -95,7 +91,7 @@ const UpdateProfile = () => {
                 className="form-control"
                 name="name"
                 value={name}
-                onChange={(e)=> setName(e.target.value)}
+                onChange={(e) => setName(e.target.value)}
               />
             </div>
 
@@ -107,7 +103,7 @@ const UpdateProfile = () => {
                 className="form-control"
                 name="email"
                 value={email}
-                onChange={(e)=> setEmail(e.target.value)}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
 

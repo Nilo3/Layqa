@@ -6,7 +6,7 @@ import MetaData from "../layout/MetaData";
 
 const Profile = () => {
   const { user, loading } = useSelector((state) => state.auth);
-  console.log(user);
+
 
   return (
     <Fragment>

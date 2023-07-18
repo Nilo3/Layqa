@@ -66,7 +66,7 @@ const Register = () => {
             }
 
             reader.readAsDataURL(e.target.files[0])
-            console.log(reader);
+        
 
         } else {
             setUser({ ...user, [e.target.name]: e.target.value })

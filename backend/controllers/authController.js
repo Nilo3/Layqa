@@ -163,24 +163,42 @@ exports.updatePassword = catchAsyncErrors(async(req,res,next)=> {
 })
 
 // Update user profile => /api/v1/me/update
-exports.updateProfile = catchAsyncErrors(async(req,res,next)=> {
-    const newUserDate = {
-        name: req.body.name,
-        email: req.body.email
+exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+  
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: 'Usuario no encontrado'
+      });
     }
-
-    // Update avatar: TODO
-
-    const user = await User.findByIdAndUpdate(req.user.id, newUserDate, {
-        new: true,
-        runValidators: true,
-        userFindAnfModify: false
-    })
-
+  
+    if (req.body.name) {
+      user.name = req.body.name;
+    }
+    if (req.body.email) {
+      user.email = req.body.email;
+    }
+    if (req.body.avatar) {
+      const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        resource_type: 'image'
+      });
+  
+      user.avatar = {
+        public_id: result.public_id,
+        url: result.secure_url
+      };
+    }
+  
+    await user.save();
+  
     res.status(200).json({
-        success: true
-    })
-})
+      success: true,
+      user
+    });
+  });
+  
 
 
 
