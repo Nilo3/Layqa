@@ -6,6 +6,7 @@ import Loader from "../layout/Loader";
 import MetaData from "../layout/MetaData";
 import { useParams } from 'react-router-dom';
 import { Carousel } from "react-bootstrap"
+import { addItemToCart } from "../../actions/cartActions";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -24,6 +25,11 @@ const ProductDetails = () => {
       dispatch(clearErrors());
     }
   }, [dispatch, alert, error, id]);
+
+  const addToCart = () => {
+    dispatch(addItemToCart(id, quantity))
+    alert.success("Producto añadido a tu carrito")
+  }
   
   const increaseQty = () => {
     const count = document.querySelector(".count")
@@ -92,6 +98,8 @@ const ProductDetails = () => {
                 type="button"
                 id="cart_btn"
                 className="btn btn-primary d-inline ml-4"
+                disabled={product.stock === 0}
+                onClick={addToCart}
               >
                 Añadir al carrito
               </button>
@@ -103,7 +111,7 @@ const ProductDetails = () => {
 
               <hr />
 
-              <h4 className="mt-2">Description:</h4>
+              <h4 className="mt-2">Descripción:</h4>
               <p>{product.description}</p>
               <hr />
              
