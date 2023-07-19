@@ -20,6 +20,8 @@ const Home = () => {
   const { loading, products, error, productCount, resPerPage } = useSelector(
     (state) => state.products
   );
+  
+
 
   const { keyword } = useParams();
 
@@ -29,6 +31,7 @@ const Home = () => {
     }
 
     const selectedCategory = category === "Todo" ? "" : category;
+    
 
     // Actualiza el valor de keyword en base al estado searchKeyword
     const updatedKeyword = searchKeyword || keyword;
@@ -52,6 +55,8 @@ const Home = () => {
     setCurrentPage(1);
     setSearchKeyword("");
   }
+
+
 
   return (
     <Fragment>
@@ -101,7 +106,7 @@ const Home = () => {
 
                 {resPerPage <= productCount && (
                   <div className="d-flex justify-content-center mt-5">
-                    {productCount !== undefined ? (
+                    {productCount !== undefined && category === "Todo"  ? (
                       
                       <Pagination
                         activePage={currentPage}
@@ -116,7 +121,7 @@ const Home = () => {
                         linkClass="page-link"
                       />
                     ) : (
-                      <Loader />
+                      <div />
                     )}
                   </div>
                 )}
