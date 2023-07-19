@@ -65,7 +65,7 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 // Forgot Password = /api/v1/password/forgot
 exports.forgotPassword = catchAsyncErrors(async( req, res, next ) => {
 
-    const user = await User.findOne({ email: req.body .email });
+    const user = await User.findOne({ email: req.body.email });
 
     if(!user){
         return next(new ErrorHandler("User not found with this email", 404));

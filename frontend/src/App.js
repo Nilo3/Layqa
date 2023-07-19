@@ -12,6 +12,7 @@ import { loadUser } from './actions/userActions';
 import store from "./store"
 import UpdateProfile from "./components/user/UpdateProfile"
 import UpdatePassword from './components/user/UpdatePassword';
+import ForgotPassword from './components/user/ForgotPassword';
 
 
 
@@ -36,6 +37,7 @@ function App() {
         <Route path="/me" element={<Profile />} exact/>
         <Route path="/me/update" element={<UpdateProfile />} exact/>
         <Route path='/password/update' element={<UpdatePassword />} exact/>
+        <Route path="/password/forgot" element={<ForgotPassword />} exact />
       </Routes>
       </div>
       <Footer />
