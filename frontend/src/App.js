@@ -11,6 +11,7 @@ import Profile from "./components/user/Profile"
 import { loadUser } from './actions/userActions';
 import store from "./store"
 import UpdateProfile from "./components/user/UpdateProfile"
+import UpdatePassword from './components/user/UpdatePassword';
 
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/me" element={<Profile />} exact/>
         <Route path="/me/update" element={<UpdateProfile />} exact/>
+        <Route path='/password/update' element={<UpdatePassword />} exact/>
       </Routes>
       </div>
       <Footer />
