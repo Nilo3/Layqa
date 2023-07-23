@@ -82,6 +82,10 @@ nav {
   height: 100%;
 }
 
+.btn2{
+  cursor: pointer;
+}
+
 .image {
   width: 5vw;
   height: 5vw;

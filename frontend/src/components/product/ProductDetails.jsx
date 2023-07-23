@@ -12,13 +12,18 @@ const ProductDetails = () => {
   const dispatch = useDispatch();
   const [quantity, setQuantity] = useState(1)
   const alert = useAlert();
+  const [loading2, setLoading2] = useState(true);
+  const [user, setUser] = useState({});
 
   const {id} = useParams()
 
   const { loading, error, product } = useSelector(state => state.productDetails);
 
+
   useEffect(() => {
     dispatch(getProductsDetails(id));
+
+
 
     if (error) {
       alert.error(error);
@@ -100,6 +105,8 @@ const ProductDetails = () => {
                 className="btn btn-primary d-inline ml-4"
                 disabled={product.stock === 0}
                 onClick={addToCart}
+               
+                
               >
                 Añadir al carrito
               </button>
