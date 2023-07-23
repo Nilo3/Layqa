@@ -14,6 +14,7 @@ import UpdateProfile from "./components/user/UpdateProfile"
 import UpdatePassword from './components/user/UpdatePassword';
 import ForgotPassword from './components/user/ForgotPassword';
 import Cart from "./components/cart/Cart"
+import Shipping from './components/cart/Shipping';
 
 
 
@@ -40,6 +41,7 @@ function App() {
         <Route path='/password/update' element={<UpdatePassword />} exact/>
         <Route path="/password/forgot" element={<ForgotPassword />} exact />
         <Route path='/cart' element={<Cart />} exact />
+        <Route path='/shipping' element={<Shipping />} />
       </Routes>
       </div>
       <Footer />

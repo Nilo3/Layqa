@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { login, clearErrors } from "../../actions/userActions";
 import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (location) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const alert = useAlert();
@@ -18,9 +18,11 @@ const Login = () => {
     (state) => state.auth
   );
 
+  const redirect = location.search ? location.search.split("=")[1] : "/shipping"
+
   useEffect(() => {
     if (isAuthenticated) {
-        navigate("/");
+        navigate(redirect);
     }
 
     if (error) {
