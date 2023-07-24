@@ -13,7 +13,7 @@ const ConfirmOrder = () => {
 
   const [preferenceId, setPreferenceId] = useState(null)
 
-  initMercadoPago("TEST-d60c80ed-9984-4b0d-99da-188ed1e71d8d")
+  initMercadoPago("")
 
   const createPreference = async () => {
     try {
