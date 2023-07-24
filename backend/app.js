@@ -17,7 +17,7 @@ app.use(fileUpload());
 dotenv.config({ path: "backend/config/config.env" });
 
 mercadopago.configure({
-    access_token: "APP_USR-6713521164401408-072411-1da7db3859ff94ac74471a042f7675db-42575302",
+    access_token: "",
 })
 
 
