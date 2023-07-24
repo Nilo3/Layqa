@@ -4,8 +4,42 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CheckoutSteps from "./CheckoutSteps";
 import { useNavigate } from "react-router-dom";
+import { initMercadoPago, Wallet } from "@mercadopago/sdk-react"
+import { useState } from "react";
+import axios from "axios"
+
 
 const ConfirmOrder = () => {
+
+  const [preferenceId, setPreferenceId] = useState(null)
+
+  initMercadoPago("TEST-d60c80ed-9984-4b0d-99da-188ed1e71d8d")
+
+  const createPreference = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/create_preference", {
+        description: "item.name",
+        price: totalPrice,
+        quantity: 1,
+       
+      });
+
+      const { id } = response.data
+      return id;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
+  const handleBuy = async () => {
+    const id = await createPreference();
+    if(id){
+      setPreferenceId(id)
+    }
+  }
+
+
   const { cartItems, shippingInfo } = useSelector((state) => state.cart);
   const { user } = useSelector((state) => state.auth);
 
@@ -14,6 +48,7 @@ const ConfirmOrder = () => {
   const shippingPrice = itemsPrice > 5000 ? 0 : 500
   const totalPrice = (itemsPrice + shippingPrice).toFixed(2)
   const navigate = useNavigate()
+
 
   const processToPayment = () => {
     const data = {
@@ -80,7 +115,7 @@ const ConfirmOrder = () => {
           ))}
         </div>
 
-        <div className="col-12 col-lg-3 my-4">
+        <div className="col-12 col-lg-4 my-4">
           <div id="order_summary">
             <h4>Order Summary</h4>
             <hr />
@@ -99,9 +134,10 @@ const ConfirmOrder = () => {
             </p>
 
             <hr />
-            <button id="checkout_btn" className="btn btn-primary btn-block" onClick={processToPayment}>
+            <button id="checkout_btn" className="btn btn-primary btn-block" onClick={handleBuy}>
               Proceed to Payment
             </button>
+            {preferenceId && <Wallet initialization={{ preferenceId }} />}
           </div>
         </div>
       </div>
