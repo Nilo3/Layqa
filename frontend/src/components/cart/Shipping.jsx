@@ -4,6 +4,7 @@ import MetaData from "../layout/MetaData";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingInfo } from "../../actions/cartActions";
+import CheckoutSteps from "./CheckoutSteps";
 
 const Shipping = () => {
 
@@ -24,12 +25,14 @@ const Shipping = () => {
     e.preventDefault();
 
     dispatch(saveShippingInfo({ address, city, phoneNo, postalCode, country }));
-    navigate("/confirm");
+    navigate("/order/confirm");
   };
 
   return (
     <Fragment>
       <MetaData title={"ShippingInfo"} />
+
+      <CheckoutSteps shipping/>
 
       <div className="row wrapper">
         <div className="col-10 col-lg-5">
