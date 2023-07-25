@@ -34,7 +34,7 @@ const Cart = () => {
   };
 
   const checkoutHandler = () => {
-    navigate("/login?redirect=shipping")
+    navigate("/shipping")
   }
 
   return (
@@ -45,7 +45,7 @@ const Cart = () => {
       ) : (
         <Fragment>
           <h2 className="mt-5">
-            Your Cart: <b>{cartItems.length} items</b>
+            Tu Compra: <b>{cartItems.length} producto</b>
           </h2>
 
           <div className="row d-flex justify-content-between">
@@ -60,8 +60,8 @@ const Cart = () => {
                         <img
                           src={item.image}
                           alt="Laptop"
-                          height="90"
-                          width="115"
+                          height="100"
+                          width="90"
                         />
                       </div>
 
@@ -78,7 +78,7 @@ const Cart = () => {
                       <div className="col-4 col-lg-3 mt-4 mt-lg-0">
                         <div className="stockCounter d-inline">
                           <span
-                            className="btn btn-danger minus"
+                            className="btn btn-dark minus"
                             onClick={() =>
                               decreaseQty(item.product, item.quantity)
                             }
@@ -93,7 +93,7 @@ const Cart = () => {
                           />
 
                           <span
-                            className="btn btn-primary plus"
+                            className="btn btn-dark plus"
                             onClick={() =>
                               increaseQty(
                                 item.product,
@@ -123,21 +123,21 @@ const Cart = () => {
 
             <div className="col-12 col-lg-3 my-4">
               <div id="order_summary">
-                <h4>Order Summary</h4>
+                <h4>Detalle de la compra</h4>
                 <hr />
                 <p>
                   Subtotal:{" "}
-                  <span className="order-summary-values">{cartItems.reduce((acc,item) => (acc + Number(item.quantity)), 0)} (Units)</span>
+                  <span className="order-summary-values">{cartItems.reduce((acc,item) => (acc + Number(item.quantity)), 0)} (Unidades)</span>
                 </p>
                 <p>
-                  Est. total:{" "}
+                  Total:{" "}
                   <span className="order-summary-values">$
                   {cartItems.reduce((acc,item) => acc +  item.quantity * item.price, 0).toFixed(2)}</span>
                 </p>
 
                 <hr />
                 <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>
-                  Check out
+                  Comprar
                 </button>
               </div>
             </div>

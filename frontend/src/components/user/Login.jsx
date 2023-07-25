@@ -18,7 +18,7 @@ const Login = (location) => {
     (state) => state.auth
   );
 
-  const redirect = location.search ? location.search.split("=")[1] : "/shipping"
+  const redirect = location.search ? location.search.split("=")[1] : "/"
 
   useEffect(() => {
     if (isAuthenticated) {
