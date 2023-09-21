@@ -6,6 +6,7 @@ import { Link,  useNavigate } from "react-router-dom";
 import { logout } from "../../actions/userActions";
 
 const Header = () => {
+
   const navigate = useNavigate();
 
   const alert = useAlert();
@@ -19,31 +20,24 @@ const Header = () => {
     alert.success('Logged out successfully.')
 }
 
+
   return (
-    <Fragment>
-      <nav className="navbar row " >
-        <div className="col-12 col-md-3">
-          <div className="navbar-brand">
-          <Link to="/">
-            <img className="image" src="/images/layqa.jpg" alt="layqa" />
-          </Link>
-          </div>
-        </div>
-
-        <div className="col-12 col-md-6 mt-2 mt-md-0">
-          
-        </div>
-
-        <div className="col-12 col-md-3 mt-4 mt-md-0 text-center">
+  <header>
+    <Link to="/" className="logo">
+  <img src="/images/layqa.png" alt="logolayqa" />
+  </Link>
+  <h2 class="text2">Layqa</h2>
+   
+  <div className="col-120  mt-4 mt-md-0 text-center">
         <Link to="/cart" style={{ textDecoration: "none "}}>
-        <span id="cart" className="ml-3">Carrito</span>
+        <strong id="cart" >Carrito</strong>
           <span className="ml-1" id="cart_count">{cartItems.length}</span>
           </Link>
 
           {user ? (
 
             <div className="ml-4 dropdown d-inline" >
-              <Link to="#!" className="btn btn-secondary dropdown-toggle mr-4 bg-black mr-3"
+              <Link to="#!" className="btn dropdown-toggle mr-4"
               type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
               aria-expanded="false">
 
@@ -55,7 +49,7 @@ const Header = () => {
                   />
                   
                 </figure>
-                <span>{user && user.name}</span>
+                <strong>{user && user.name}</strong>
               </Link>
              
               <div className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
@@ -73,15 +67,47 @@ const Header = () => {
             </div>
             
 
-          ): !loading  && <Link to="Login" className="btn ml-4 text-white" id="login_btn">Ingresar</Link> }
+          ): !loading  && <Link to="Login" className="btn ml-4" id="login_btn">Ingresar</Link> }
           
           
 
           
         </div>
-      </nav>
-    </Fragment>
-  );
+  </header>
+  )
 };
 
 export default Header;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

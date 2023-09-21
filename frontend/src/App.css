@@ -1,6 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Walter+Turncoat&display=swap');
 
 
 html,
@@ -124,7 +124,7 @@ nav {
 
 #login_btn,
 #view_btn {
-  background-color: #292e31
+  background-color: #b2965e
 ;
   padding: 0.4rem 1.8rem;
   font-family: calibri;
@@ -133,11 +133,11 @@ nav {
 
 #cart {
   font-size: 1rem;
-  color: rgba(0, 0, 0, 0.595);
+  color: black
 }
 
 #cart_count {
-  background-color: #292e31;
+  background-color: #b2965e;
   padding: 0.2rem 0.5rem;
   border-radius: 0.2rem;
   color: white;
@@ -717,3 +717,87 @@ ul.CTAs a {
   font-size: 0.8rem;
   color: grey;
 }
+
+.transferencia {
+display: flex;
+align-items: center;
+justify-content: center;
+border-radius: var(--borderRadius);
+height: var(--buttonHeight);
+border: none;
+cursor: pointer;
+padding: 16px;
+width: 100%;
+min-width: 280px;
+overflow: hidden;
+white-space: nowrap;
+line-height: 20px;
+font-family: 'proximaNova';
+font-size: 16px;
+font-weight: 600;
+position: relative;
+background-color: #b2965e;
+color: white;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  height: 15rem;
+  background-image: url("../public/images/fondo.jpg");
+  margin: 0;
+  align-items: center;
+  padding: 2rem;
+  background-size: cover;
+}
+
+.text2{
+  font-family: "Walter Turncoat";
+  font-size: 10rem;
+  color: black;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+}
+
+.logo img{
+  height: 10rem;
+  margin-right: 2rem;
+}
+
+a{
+  text-decoration: none;
+}
+
+nav a{
+  font-weight: 600;
+  padding-right: 2rem;
+}
+
+@media (max-width: 700px){
+  header{
+    flex-direction: column;
+  }
+
+  nav{
+    padding: 2rem 0rem;
+  }
+
+  .text2 {
+    font-size: 3rem; /* Cambia el tamaño de fuente para pantallas más pequeñas */
+    text-align: center; /* Centra el texto en pantallas más pequeñas */
+  }
+
+  .logo img{
+    height: 4rem;
+    margin-right: 1rem;
+  }
+}
+
+
+.links3{
+  background-color: gold;
+}
+

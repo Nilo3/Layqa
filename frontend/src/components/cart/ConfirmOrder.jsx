@@ -141,7 +141,7 @@ const ConfirmOrder = () => {
 
               
             {preferenceId && <Wallet initialization={{ preferenceId }} />}
-            <button >Boton de transferencia  </button>
+            <button className="transferencia" >Boton de transferencia  </button>
           </div>
           
         </div>
