@@ -30,7 +30,7 @@ function App() {
     <Router>
       <div className="App">
       <Header />
-      <div className='container container-fluid'>
+      <div className='container flex-1 container-fluid'>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/search/:keyword" element={<Home />} />
@@ -46,8 +46,9 @@ function App() {
         <Route path='/order/confirm' element={<ConfirmOrder />} />
       </Routes>
       </div>
-      <Footer />
+     
      </div>
+     <Footer />
     </Router>
   );
 }

@@ -62,7 +62,7 @@ const Home = () => {
     <Fragment>
      <style>
         {`
-        @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+       @import url('https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap');
       `}
       </style>
       <MetaData title={"Envuelve tu hogar en fragancia"} />
@@ -70,26 +70,10 @@ const Home = () => {
       <div className="container mt-5">
         <div className="row">
           <div className="col-md-3 mt-5">
-            <div className="mt-5">
-              <h4 className="mb-3" style={{ fontFamily: 'Pacifico' }}>Categorías</h4>
-              <ul className="pl-0">
-                {categories.map((category) => (
-                  <li
-                    style={{
-                      cursor: "pointer",
-                      listStyleType: "none",
-                    }}
-                    key={category}
-                    onClick={() => handleCategoryChange(category)}
-                  >
-                    {category}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            
           </div>
-          <div className="col-md-9">
-            <h1 id="products-heading" style={{ fontFamily: 'Pacifico' }} className="centrado">Nuestros Productos</h1>
+          <div className="col-md-20">
+            <h1 id="products-heading" style={{ fontFamily: 'Lato' }} className="centrado">Nuestros Productos</h1>
                     <br />
             {loading ? (
               <Loader />

@@ -21,7 +21,7 @@ const Header = () => {
 
   return (
     <Fragment>
-      <nav className="navbar row">
+      <nav className="navbar row " >
         <div className="col-12 col-md-3">
           <div className="navbar-brand">
           <Link to="/">
@@ -43,7 +43,7 @@ const Header = () => {
           {user ? (
 
             <div className="ml-4 dropdown d-inline" >
-              <Link to="#!" className="btn btn-secondary dropdown-toggle mr-4"
+              <Link to="#!" className="btn btn-secondary dropdown-toggle mr-4 bg-black mr-3"
               type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
               aria-expanded="false">
 
@@ -73,7 +73,7 @@ const Header = () => {
             </div>
             
 
-          ): !loading  && <Link to="Login" className="btn ml-4" id="login_btn">Ingresar</Link> }
+          ): !loading  && <Link to="Login" className="btn ml-4 text-white" id="login_btn">Ingresar</Link> }
           
           
 

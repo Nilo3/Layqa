@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import MetaData from "../layout/MetaData";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -13,7 +13,7 @@ const ConfirmOrder = () => {
 
   const [preferenceId, setPreferenceId] = useState(null)
 
-  initMercadoPago("TEST-d60c80ed-9984-4b0d-99da-188ed1e71d8d")
+  initMercadoPago("TEST-b357742a-e08f-491b-9d79-24610513a772")
 
   const createPreference = async () => {
     try {
@@ -25,14 +25,18 @@ const ConfirmOrder = () => {
       });
 
       const { id } = response.data
+      console.log();
       return id;
     } catch (error) {
       console.log(error);
     }
   }
 
+  useEffect(()=> {
+    handleBuy()
+  }, [])
 
-  const handleBuy = async () => {
+  const handleBuy = async  () => {
     const id = await createPreference();
     if(id){
       setPreferenceId(id)
@@ -45,7 +49,7 @@ const ConfirmOrder = () => {
 
   // Calculate Order Prices
   const itemsPrice = cartItems.reduce((acc,item) => acc + item.price * item.quantity, 0)
-  const shippingPrice = itemsPrice > 5000 ? 0 : 500
+  const shippingPrice = itemsPrice > 5000 ? 0 : 0
   const totalPrice = (itemsPrice + shippingPrice).toFixed(2)
   const navigate = useNavigate()
 
@@ -134,11 +138,12 @@ const ConfirmOrder = () => {
             </p>
 
             <hr />
-            <button id="checkout_btn" className="btn btn-primary btn-block" onClick={handleBuy}>
-              Continuar para Pagar
-            </button>
+
+              
             {preferenceId && <Wallet initialization={{ preferenceId }} />}
+            <button >Boton de transferencia  </button>
           </div>
+          
         </div>
       </div>
     </Fragment>

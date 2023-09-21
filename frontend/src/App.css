@@ -1,3 +1,8 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Mooli&display=swap');
+
+
+
 html,
 body {
   font-family: 'Amazon Ember';
@@ -6,6 +11,7 @@ body {
   margin: 0px;
   padding: 0px;
   overflow-x: hidden;
+  
 }
 
 /* Scroll Bar */
@@ -28,6 +34,73 @@ body {
   background-clip: padding-box;
   border-radius: 5px;
 }
+
+.pie{
+  position: relative;
+  padding: 15px 0;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  background-color: #b2965e;
+}
+
+.pie .grupo1 {
+  width: 100%;
+  max-width: 75rem; /* 1200px convertido a rem */
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 3.125rem; /* 50px convertido a rem */
+  padding: 2.8125rem 0; /* 45px convertido a rem */
+}
+
+
+
+.pie .grupo1 .box h2{
+  color: #fff;
+  margin-bottom: 25px;
+  font-size: 20px;
+}
+
+.pie .grupo1 .box p{
+  color: #efefef;
+  margin-bottom: 10px;
+}
+
+.pie .grupo1 .box .redsocial a{
+  display: inline-block;
+  text-decoration: none;
+  width: 45px;
+  line-height: 45px;
+  color: #fff;
+  margin-right: 10px;
+  text-align: center;
+  transition: all 300ms ease;
+}
+
+.pie .grupo1 .box .redsocial a:hover{
+color: black;
+}
+
+.pie .grupo2 {
+  background-color: #c0a673 ;
+  padding: 15px 10px;
+  text-align: center;
+  color: #fff;
+}
+
+.pie .grupo2 small{
+  font-size: 15px;
+}
+@media screen and (max-width: 768px) {
+  .pie {
+    padding: 1rem;
+    text-align: center;
+  }
+  .pie .grupo1 {
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 1rem;
+  } }
 
 nav {
   background-color: #fff;
@@ -76,6 +149,7 @@ nav {
 /* Home page */
 #products_heading {
   margin-top: 1.8rem;
+  
 }
 
 .card {
@@ -124,6 +198,7 @@ nav {
 
 .centrado{
   text-align: center;
+  text-decoration: none;
 }
 
 
@@ -140,10 +215,10 @@ nav {
 
 /* Footer */
 footer {
-  margin-top: 8rem;
-  color: grey;
-  bottom: 0;
-  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Molli", sans-serif;
 }
 
 /* Ratings */
@@ -177,6 +252,7 @@ footer {
 #product_id {
   color: grey;
   font-size: 0.8rem;
+  
 }
 
 #product_price {
@@ -195,6 +271,7 @@ footer {
 #product_seller {
   color: grey;
   font-size: 0.9rem;
+  
 }
 
 #stock_status {
@@ -594,6 +671,7 @@ ul.CTAs a {
 #products_table .btn {
   padding: 0.2rem 0.5rem;
   margin-left: 0.4rem;
+  
 }
 
 /* Dashboard */
